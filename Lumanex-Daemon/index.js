@@ -1,7 +1,6 @@
 
 const os = require('os');
 const fs = require('fs');
-const JsonDB = require('node-json-db');
 const process = require('process');
 const express = require('express');
 
@@ -12,7 +11,7 @@ const Database = require('./core/Database');
 const app = express();
 
 const sqlite3 = require('sqlite3');
-const db = new sqlite3.Database('example.db');
+const db = new sqlite3.Database('database.db');
 
 (async() => {
   /* Check if coin blockchain folder exists */
