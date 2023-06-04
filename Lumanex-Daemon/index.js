@@ -4,9 +4,9 @@ const fs = require('fs');
 const process = require('process');
 const express = require('express');
 
-const Config = require('./core/Config');
-const Logger = require('./core/Logger');
-const Database = require('./core/Database');
+const Config = require('./Core/Config');
+const Logger = require('./Core/Logger');
+const Database = require('./Core/Database');
 
 const app = express();
 
