@@ -7,6 +7,7 @@ const express = require('express');
 const Config = require('./Core/Config');
 const Logger = require('./Core/Logger');
 const Database = require('./Core/Database');
+const RPC = require('./Core/RPC');
 
 const app = express();
 
@@ -36,15 +37,8 @@ const db = new sqlite3.Database('database.db');
   await Database.initializeTables(db);
 
 
-  /* Express calls */
-  app.get('/', function (req, res) {
-    res.json({
-      success: false,
-      result: {
-        message: "This is not a valid API call"
-      }
-    });
-  });
+  /* RPC Server */
+  RPC.initializeRequests(app);
 
 
   /* Starting RPC server */
