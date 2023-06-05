@@ -17,8 +17,8 @@ module.exports = {
 
   initializeTables: async function(db) {
     return new Promise(async (resolve, reject) => {
-      let blocks = await this.checkTableExist(db, 'blocks');
-      let transactions = await this.checkTableExist(db, 'transactions');
+      let blocks = await module.exports.checkTableExist(db, 'blocks');
+      let transactions = await module.exports.checkTableExist(db, 'transactions');
 
       /* Create 'blocks' table if it does not exist */
       if(!blocks) {
