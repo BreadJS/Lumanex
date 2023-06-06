@@ -5,13 +5,18 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon",
+    "dev-peer": "node . --p2p-port=24000 --rpc-port=24001",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "BreadJS",
   "license": "ISC",
   "dependencies": {
     "chalk": "^4.1.2",
+    "command-line-args": "^5.2.1",
     "express": "^4.18.2",
+    "http": "^0.0.1-security",
+    "socket.io": "^4.6.2",
+    "socket.io-client": "^4.6.2",
     "sqlite3": "^5.1.6"
   }
 }
