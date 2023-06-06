@@ -4,6 +4,7 @@ module.exports = {
   INFO: 'info',
   ERROR: 'error',
   WARN: 'warning',
+  VERB: 'verbose',
 
   log: function(type, cat, msg) {
     let typeOutput = "";
@@ -15,6 +16,8 @@ module.exports = {
       typeOutput = chalk.red("[ERROR]");
     } else if(type == this.WARN) {
       typeOutput = chalk.yellow("[WARN] ");
+    } else if(type == this.VERB) {
+      typeOutput = chalk.hex('#92C825')("[VERB] ");
     } else {
       this.log(this.ERROR, "Incorrect logging type");
       return;

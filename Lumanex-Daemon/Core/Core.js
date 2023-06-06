@@ -16,7 +16,8 @@ function generateNodeID() {
 module.exports = {
   cmdArgs: commandLineArgs([
     { name: 'p2p-port', type: Number },
-    { name: 'rpc-port', type: Number }
+    { name: 'rpc-port', type: Number },
+    { name: 'verbose-log', type: Boolean },
   ]),
   
   nodeID: generateNodeID(),
