@@ -28,6 +28,8 @@ module.exports = {
       catOutput = chalk.blueBright("[Block]");
     } else if(cat == "RPC") {
       catOutput = chalk.hex('#FFA971')("[RPC]");
+    } else if(cat == "P2P") {
+      catOutput = chalk.hex('#DDEA62')("[P2P]");
     }
 
     let currentDate = new Date();
