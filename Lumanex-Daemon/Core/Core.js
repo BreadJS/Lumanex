@@ -21,5 +21,7 @@ module.exports = {
   ]),
   
   nodeID: generateNodeID(),
-  connectedPeers: 0
+
+  connectedPeers: 0,
+  peerNodeID: [],
 };
