@@ -37,10 +37,10 @@ module.exports = {
   WALLET_API_PORT: 23002,               /* Wallet API port */
 
   SEED_NODES: [                         /* Public mainnet seed nodes */
-    "127.0.0.1"
+    "192.168.1.194:23000"
   ],
 
   TESTNET_SEED_NODES: [                 /* Public testnet seed nodes */
-    "127.0.0.1"
+    "192.168.1.194:23000"
   ]
 };
