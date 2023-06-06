@@ -3,15 +3,24 @@ const os = require('os');
 const fs = require('fs');
 const process = require('process');
 const express = require('express');
+const http = require('http');
+const socketIO = require('socket.io');
+const socketIOClient = require('socket.io-client');
 
 const Config = require('./Core/Config');
+const Core = require('./Core/Core');
 const Logger = require('./Core/Logger');
 const Database = require('./Core/Database');
 const RPC = require('./Core/RPC');
 
 const app = express();
 
+const p2papp = express();
+const p2pServer = http.createServer(p2papp);
+const p2pIO = socketIO(p2pServer);
+
 const sqlite3 = require('sqlite3');
+const P2P = require('./Core/P2P');
 const db = new sqlite3.Database('database.db');
 
 (async() => {
@@ -23,6 +32,7 @@ const db = new sqlite3.Database('database.db');
     /* Set blockchain folder */
     Config.BLOCKCHAIN_FOLDER = `${os.homedir()}/.${Config.COINNAME}`;
   }
+
 
   /* Clear console */
   console.clear();
@@ -36,13 +46,24 @@ const db = new sqlite3.Database('database.db');
   Logger.log(Logger.INFO, 'Transaction', 'Initializing transactions...');
   await Database.initializeTables(db);
 
+  
+
+  /* P2P Incoming Connection */
+  P2P.serverIncomingConnection(p2pIO);
+
+  /* Start P2P server */
+  P2P.startServer(p2pServer);
+
+
+  
+  /* Client connect to nodes */
+  P2P.clientConnect(socketIOClient);
+
+
 
   /* RPC Server */
   RPC.initializeRequests(app);
 
-
-  /* Starting RPC server */
-  app.listen(Config.RPC_PORT, () => {
-    Logger.log(Logger.INFO, 'RPC', `RPC server has started on port ${Config.RPC_PORT}`);
-  });
+  /* Start RPC server */
+  RPC.startServer(app);
 })();
